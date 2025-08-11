@@ -13,9 +13,11 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-	title: 'Capsulify - Your Personal Capsule Wardrobe Stylist',
-	description:
-		'Create a capsule wardrobe that works with your body shape. Get 1,000+ outfit combinations from just 30 pieces. Perfect for inverted triangle body shapes.',
+	title: 'Capsulify Landing Page',
+	description: 'Capsule Wardrobe Landing Page',
+	icons: {
+		icon: '/assets/images/logo/logo.svg',
+	},
 }
 
 export default function RootLayout({
