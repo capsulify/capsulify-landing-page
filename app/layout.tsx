@@ -13,7 +13,7 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-	title: 'Capsulify Landing Page',
+	title: 'Capsulify',
 	description: 'Capsule Wardrobe Landing Page',
 	icons: {
 		icon: '/assets/images/logo/logo.svg',

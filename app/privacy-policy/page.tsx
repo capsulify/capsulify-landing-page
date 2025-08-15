@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
 				</div>
 				<nav className='flex-1 flex justify-end'>
 					<a
-						href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+						href='https://app.capsulify.app/'
 						target='_blank'
 						rel='noopener noreferrer'
 						className='font-fraunces max-sm:text-[0.625rem] text-[0.75rem] cursor-pointer text-primary font-semibold mx-2 max-sm:py-1 transition-all duration-300 hover:shadow-md hover:scale-[1.08] active:scale-[0.98] uppercase border-b-4 border-[#f8c255] tracking-wider py-1'

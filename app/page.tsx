@@ -39,7 +39,7 @@ function NoSSR({ children }: { children: React.ReactNode }) {
 // FAQColumn and FAQItem components
 function FAQColumn({ faqs, columnKey }: FAQColumnProps) {
 	const [openIdx, setOpenIdx] = React.useState<number | null>(null)
-  return (
+	return (
 		<NoSSR>
 			<div className='space-y-4'>
 				{faqs.map((faq, idx) => (
@@ -231,7 +231,7 @@ function EbookSection() {
 				Get instant access to the full eBook
 			</h2>
 			<div className='flex justify-center my-6'>
-        <Image
+				<Image
 					src='/assets/images/ebookcover.jpeg'
 					alt='eBook Cover'
 					width={320}
@@ -298,7 +298,7 @@ const page = () => {
 			{/* Header */}
 			<header className='w-full flex items-center justify-between px-2 md:px-6 py-4 bg-[#ad4c5c] text-primary font-fraunces'>
 				<div className='flex items-center gap-1 cursor-pointer hover:bg-accent/20 rounded-lg px-1 md:px-2 py-1 transition-colors flex-1 justify-start'>
-            <Image
+					<Image
 						src='/assets/images/logo/logo-light.svg'
 						alt='Capsulify Logo'
 						width={40}
@@ -311,7 +311,7 @@ const page = () => {
 				</div>
 				<nav className='flex-1 flex justify-end'>
 					<a
-						href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+						href='https://app.capsulify.app/'
 						target='_blank'
 						rel='noopener noreferrer'
 						className='font-fraunces max-sm:text-[0.75rem] text-[0.875rem] cursor-pointer text-primary font-semibold mx-2 max-sm:py-1 transition-all duration-300 hover:shadow-md hover:scale-[1.08] active:scale-[0.98] uppercase border-b-4 border-[#f8c255] tracking-wider py-1'
@@ -332,7 +332,7 @@ const page = () => {
 								Forgot?
 							</h1>
 							<a
-								href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+								href='https://app.capsulify.app/'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-[#f8c255] mx-auto my-6 text-accent cursor-pointer font-extrabold tracking-wide px-8 py-3 rounded-xl mb-8 transition-all duration-300 transform-all hover:scale-105 hover:shadow-lg text-[0.875rem] uppercase '
@@ -470,7 +470,7 @@ const page = () => {
 					</div>
 					<div className='flex-1 flex justify-end items-center'>
 						<div className='overflow-hidden w-full max-w-xs rounded-md'>
-          <Image
+							<Image
 								src='/assets/landing-page/silhouette-nobg.png'
 								alt='Woman on sofa'
 								width={300}
@@ -739,7 +739,7 @@ const page = () => {
 								Your browser does not support the video tag.
 							</video>
 							<a
-								href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+								href='https://app.capsulify.app/'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-[#f8c255] text-accent cursor-pointer font-extrabold tracking-wide px-8 py-3 rounded-xl mb-8 transition-all duration-300 transform hover:bg-accent/20 hover:scale-105 hover:shadow-lg text-[0.875rem] uppercase mt-10 font-fraunces italic'
@@ -999,7 +999,7 @@ const page = () => {
 						</div>
 					</div>
 					<a
-						href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+						href='https://app.capsulify.app/'
 						target='_blank'
 						rel='noopener noreferrer'
 						className='bg-[#f8c255] mx-auto my-10 text-accent cursor-pointer font-extrabold tracking-wide px-8 py-3 rounded-xl mb-8 transition-all duration-300 transform hover:bg-accent/20 hover:scale-105 hover:shadow-lg text-[0.875rem] uppercase font-fraunces italic'
@@ -1501,7 +1501,7 @@ const page = () => {
 							</div>
 						</div>
 						<a
-							href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+							href='https://app.capsulify.app/'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='bg-[#f8c255] text-accent cursor-pointer font-extrabold px-10 py-3 rounded-xl mb-8 transition-all duration-300 transform hover:bg-accent/20 hover:scale-105 hover:shadow-lg text-[0.875rem] uppercase my-10'
@@ -1706,7 +1706,7 @@ const page = () => {
 								Limited to the First 100 users!
 							</p>
 							<a
-								href='https://buy.stripe.com/eVq4gA0F70331UqgGafMA02'
+								href='https://app.capsulify.app/'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-[#f8c255] text-accent cursor-pointer font-extrabold tracking-wide px-8 py-3 rounded-xl mb-8 transition-all duration-300 transform hover:bg-accent/20 hover:scale-105 hover:shadow-lg text-[0.875rem] uppercase'
@@ -1757,8 +1757,8 @@ const page = () => {
 						</span>
 					</div>
 				</div>
-      </footer>
-    </div>
+			</footer>
+		</div>
 	)
 }
 
