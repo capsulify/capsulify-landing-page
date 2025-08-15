@@ -121,7 +121,7 @@ function CountdownTimer() {
 		// Target: June 30, 2025, 11:59:00 PM SGT (UTC+8)
 		function getSGTTargetDate() {
 			// 11:59 PM SGT on June 30, 2025 is 15:59 UTC on June 30, 2025
-			const utcDate = new Date(Date.UTC(2025, 5, 30, 15, 59, 0))
+			const utcDate = new Date(Date.UTC(2025, 7, 30, 15, 59, 0))
 			return utcDate
 		}
 
@@ -1456,15 +1456,6 @@ const page = () => {
 						<h2 className='w-full text-center text-[1.8rem] md:text-4xl font-extrabold font-fraunces mb-2 bg-[#ad4c5c] text-primary py-6'>
 							What You'll Get
 						</h2>
-						<h3 className='text-center font-bold text-lg md:text-xl mb-2 font-inter flex items-center justify-center gap-2'>
-							<span aria-hidden='true' className='mr-2 text-xl'>
-								🎁
-							</span>{' '}
-							Your Lifetime Deal:{' '}
-							<span className=' text-[1.1rem] font-bold'>
-								$99 One-Time
-							</span>
-						</h3>
 						<p className='text-center font-semibold text-sm md:text-lg mb-8 font-inter'>
 							Exclusive Perks for Founding Users
 						</p>
@@ -1591,15 +1582,15 @@ const page = () => {
 						</div>
 						<div className='w-full flex flex-col items-center my-12 px-4'>
 							<h3 className='text-center font-bold text-xl md:text-2xl mb-2 font-inter flex items-center justify-center gap-2 border-b-4 py-2 px-2 border-[#f8c255]'>
-								🔒Only 100 Spots. Offer Ends 30th June 2025
+								🔒Only 100 Spots. Offer Ends 30th August 2025
 							</h3>
-							<p className='text-center text-[1rem] mb-2'>
+							{/* 							<p className='text-center text-[1rem] mb-2'>
 								This is your{' '}
 								<span className='font-bold'>only chance</span>{' '}
 								to get lifetime access for just{' '}
 								<span className='font-bold'>$99</span> — no
 								monthly fees, no hidden upsells, no gimmicks.
-							</p>
+							</p> */}
 							<p className='text-center text-[1rem]'>
 								You'll get{' '}
 								<span className='font-bold'>
