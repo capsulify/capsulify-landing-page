@@ -41,12 +41,20 @@
 	background-color: #eee7e1;
 }
 
-.bg-accent-2 {
+.bg-accent-3 {
 	background-color: #a88f81;
+}
+
+.bg-accent-2 {
+	background-color: #994351;
 }
 
 .text-accent {
 	color: var(--accent-color);
+}
+
+.text-accent-2 {
+	color: #994351;
 }
 
 .text-primary {
