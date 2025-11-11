@@ -368,7 +368,7 @@ const page = () => {
 								</div>
 								<div>
 									<div className='text-xl md:text-2xl font-extrabold text-accent'>
-										5000+
+										1000+
 									</div>
 									<div className='text-xs text-accent/70 mt-1'>
 										Outfit Ideas
@@ -400,63 +400,199 @@ const page = () => {
 					</div>
 				</section>
 
-				{/* Sound Familiar Section */}
-				<section className='w-full bg-primary py-10 px-6 md:px-12'>
+				{/* Closet Thoughts Section (between Hero and Sound Familiar) */}
+				<section className='w-full bg-primary py-12 px-6 md:px-12'>
+					<div className='max-w-7xl mx-auto'>
+						<div className='p-0 md:p-0'>
+							<h2 className='text-2xl md:text-3xl font-extrabold font-fraunces text-accent text-center mb-8 md:mb-10'>
+								Have you ever looked in your closet and thought:
+							</h2>
+							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										I have so many clothes but always wear
+										the same outfits.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										Your closet is full of great pieces, but
+										you default to the same combinations
+										because they feel safe and familiar.
+									</p>
+								</div>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										This top is cute but I never know what
+										to pair it with.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										Some clothes look great on their own,
+										but you struggle to create outfits that
+										make them shine together.
+									</p>
+								</div>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										I end up buying more instead of wearing
+										what I have.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										When you're stuck, it's easier to shop
+										than to experiment with combinations
+										you've never tried.
+									</p>
+								</div>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-5xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										I can't recreate those outfit ideas I
+										saved.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										Pinterest looks are inspiring but when
+										you try to recreate them with your
+										actual clothes, they don't quite hit the
+										same.
+									</p>
+								</div>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										I don't know which of my pieces actually
+										look good together.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										Not all combinations work, and trying
+										everything on feels exhausting. You need
+										a smarter way to see what works.
+									</p>
+								</div>
+								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
+									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+										❞
+									</span>
+									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
+										I want to maximize my existing wardrobe.
+									</p>
+									<p className='text-sm text-accent/70 leading-relaxed'>
+										You believe in capsule wardrobes but
+										need help discovering all the outfit
+										combinations your clothes can create.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Feelings Section (replacing Sound Familiar) */}
+				<section className='w-full bg-primary py-20 px-6 md:px-12'>
 					<div className='max-w-6xl mx-auto text-center space-y-12'>
 						<div>
-							<h2 className='text-2xl md:text-3xl font-extrabold font-fraunces text-accent mb-4'>
-								Sound Familiar?
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-accent-2 mb-4'>
+								You Don't Want More Clothes.
 							</h2>
-							<p className='text-sm md:text-base text-accent/70 max-w-2xl mx-auto'>
-								You're not alone. These are the most common
-								wardrobe frustrations we hear.
+							<p className='text-base md:text-md text-accent/70 max-w-2xl mx-auto'>
+								You want these feelings from the wardrobe you
+								already own.
 							</p>
 						</div>
-
-						{/* Three Cards */}
-						<div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-							{/* Card 1 */}
-							<div className='bg-primary rounded-xl p-8 shadow-lg'>
-								<div className='w-14 h-14 bg-[#f8c255] rounded-full flex items-center justify-center mx-auto mb-6'>
-									<span className='text-2xl'>😔</span>
-								</div>
-								<h3 className='text-lg font-bold text-accent-2 mb-4 text-center'>
-									Same Outfits, Every Day
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Goal
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want to wear all the clothes I own, not
+									just my go-to pieces.
 								</h3>
-								<p className='text-sm text-accent/70 text-center leading-relaxed'>
-									You have a closet full of clothes, but you
-									always wear the same safe combinations. It
-									feels like you have nothing new to wear.
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									You have great pieces collecting dust in
+									your closet because you don't know how to
+									style them.
 								</p>
 							</div>
-
-							{/* Card 2 */}
-							<div className='bg-secondary rounded-xl p-8 shadow-lg'>
-								<div className='w-14 h-14 bg-[#f8c255] rounded-full flex items-center justify-center mx-auto mb-6'>
-									<span className='text-2xl'>❓</span>
-								</div>
-								<h3 className='text-lg font-bold text-accent-2 mb-4 text-center'>
-									Great Pieces, No Matches
+							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Outcome
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want to see hundreds of outfit ideas from
+									my existing wardrobe.
 								</h3>
-								<p className='text-sm text-accent/70 text-center leading-relaxed'>
-									That cute top sits unworn because you never
-									know what to pair it with. Your clothes have
-									potential you're not unlocking.
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									Stop defaulting to the same 5 outfits. Your
+									clothes can create dozens of combinations
+									you've never tried.
 								</p>
 							</div>
-
-							{/* Card 3 */}
-							<div className='bg-primary rounded-xl p-8 shadow-lg'>
-								<div className='w-14 h-14 bg-[#f8c255] rounded-full flex items-center justify-center mx-auto mb-6'>
-									<span className='text-2xl'>🛍️</span>
-								</div>
-								<h3 className='text-lg font-bold text-accent-2 mb-4 text-center'>
-									Buying Instead of Mixing
+							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Outcome
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want to stop buying new clothes and wear
+									what I have.
 								</h3>
-								<p className='text-sm text-accent/70 text-center leading-relaxed'>
-									You keep shopping for new clothes when your
-									closet is already full. The problem isn't
-									what you have—it's knowing how to style it.
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									Rediscover your existing wardrobe and see
+									how 30 smart pieces can create 1000+ outfit
+									combinations.
+								</p>
+							</div>
+							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Goal
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want to look put-together without trying
+									every combination.
+								</h3>
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									You want to see which outfits work before
+									you even put them on — making your morning
+									routine effortless.
+								</p>
+							</div>
+							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Feeling
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want to rediscover my closet and fall in
+									love with my clothes again.
+								</h3>
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									Stop letting great pieces sit unworn. Let
+									Capsulify show you fresh ways to style what
+									you already own.
+								</p>
+							</div>
+							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
+								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+									Feeling
+								</span>
+								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+									I want dressing to be a joy,
+									<br />
+									not a chore.
+								</h3>
+								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+									You want to feel good every morning, knowing
+									exactly what to wear — without overthinking
+									it.
 								</p>
 							</div>
 						</div>
