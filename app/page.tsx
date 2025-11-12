@@ -58,18 +58,18 @@ function FAQColumn({ faqs, columnKey }: FAQColumnProps) {
 
 function FAQItem({ question, answer, open, onClick }: FAQItemProps) {
 	return (
-		<div className='pb-2'>
+		<div className='border-b border-neutral-dark/10 pb-4 last:border-b-0'>
 			<button
-				className='flex items-center w-full text-left text-accent font-inter text-base font-medium focus:outline-none py-2'
+				className='flex items-center justify-between w-full text-left text-accent font-inter text-base md:text-lg font-bold focus:outline-none py-3 hover:text-accent/80 transition-colors'
 				onClick={onClick}
 				aria-expanded={open}
 				type='button'
 			>
-				<span className='flex-1 font-bold'>{question}</span>
-				<span className='ml-2'>
+				<span className='flex-1 pr-4'>{question}</span>
+				<span className='flex-shrink-0'>
 					{!open ? (
 						<svg
-							className='w-5 h-5 cursor-pointer'
+							className='w-5 h-5 text-accent/60'
 							fill='none'
 							stroke='currentColor'
 							strokeWidth='2'
@@ -83,7 +83,7 @@ function FAQItem({ question, answer, open, onClick }: FAQItemProps) {
 						</svg>
 					) : (
 						<svg
-							className='w-5 h-5 cursor-pointer'
+							className='w-5 h-5 text-accent/60'
 							fill='none'
 							stroke='currentColor'
 							strokeWidth='2'
@@ -99,10 +99,170 @@ function FAQItem({ question, answer, open, onClick }: FAQItemProps) {
 				</span>
 			</button>
 			{open && (
-				<div className='pl-2 pr-2 pb-2 text-accent/90 text-sm animate-fade-in leading-6'>
+				<div className='text-accent/80 text-sm md:text-base leading-relaxed animate-fade-in'>
 					{answer}
 				</div>
 			)}
+		</div>
+	)
+}
+
+// FAQ Section Component with expandable items
+function FAQSection() {
+	const [openIndex, setOpenIndex] = useState<number | null>(-1) // Start with FAQ 2 open
+
+	const faqs = [
+		{
+			q: 'How does it work with my existing wardrobe?',
+			a: (
+				<div className='space-y-3 text-sm md:text-sm text-accent/80 leading-relaxed pt-2'>
+					<p>
+						Simply upload your pieces (or use our starter
+						templates), and Capsulify shows you hundreds of outfit
+						combinations from your clothes.
+					</p>
+					<p className='font-semibold text-accent'>
+						You can start small:
+					</p>
+					<ul className='list-disc list-inside space-y-2 ml-2'>
+						<li>
+							Upload just 5–10 core pieces to see your first
+							outfit combinations
+						</li>
+						<li>
+							Add more pieces over time as you build your digital
+							wardrobe
+						</li>
+						<li>
+							Or start from scratch with our curated starter
+							templates
+						</li>
+					</ul>
+					<p>
+						The more pieces you add, the more outfit combinations
+						you discover. You don't need a perfectly curated closet
+						— just start with what you have now and see the magic
+						happen.
+					</p>
+				</div>
+			),
+		},
+		{
+			q: 'I hate uploading clothes. This sounds like work.',
+			a: (
+				<div className='space-y-3 text-sm md:text-sm text-accent/80 leading-relaxed pt-2'>
+					<p className='font-semibold text-accent'>
+						Totally fair. That's why we made it fast.
+					</p>
+					<p>
+						You just need to snap a photo of your existing item
+						under good lighting. If you can find the photo of your
+						clothing from its website (even with the model wearing
+						it!), that's even better. Our app will just detect the
+						item and render it accordingly.
+					</p>
+					<p>
+						Or just start with 10–15 core pieces and still get
+						dozens of looks. 30 mins and you're done.
+					</p>
+					<p className='font-semibold text-accent'>
+						You don't need to upload your whole closet on Day 1.
+					</p>
+				</div>
+			),
+		},
+		{
+			q: 'Do I need to upload my entire closet?',
+			a: (
+				<div className='space-y-3 text-sm md:text-sm text-accent/80 leading-relaxed pt-2'>
+					<p className='font-semibold text-accent'>
+						Nope — definitely not.
+					</p>
+					<p>You can start with just a few pieces:</p>
+					<p className='ml-4'>
+						2–4 tops, 2 bottoms, a pair of shoes — and you're good
+						to go.
+					</p>
+					<p>
+						Capsulify will already start generating outfit ideas
+						based on those.
+					</p>
+					<p>
+						The more you add, the smarter and more personalized the
+						outfit suggestions become. But there's no need to upload
+						your entire wardrobe on Day 1.
+					</p>
+					<p className='font-semibold text-accent'>
+						Start small. Build as you go. We designed it that way on
+						purpose — to be useful even when your closet is still
+						half-loaded.
+					</p>
+				</div>
+			),
+		},
+		{
+			q: 'Do I have to have 30 pieces?',
+			a: (
+				<div className='space-y-3 text-sm md:text-sm text-accent/80 leading-relaxed pt-2'>
+					<p className='font-semibold text-accent'>Not at all.</p>
+					<p>
+						30 pieces is just a{' '}
+						<span className='font-semibold'>
+							starting framework
+						</span>
+						, not a requirement. You can begin with as few as 6–12
+						items and still see useful outfit combinations. Some
+						women start with even less, especially if they're
+						building their capsule from scratch.
+					</p>
+					<p>
+						Capsulify is designed to work with{' '}
+						<span className='font-semibold'>whatever you have</span>{' '}
+						— whether that's a full closet or a handful of go-to
+						staples. You can add more pieces over time as your
+						wardrobe (or confidence) grows.
+					</p>
+					<p className='font-semibold text-accent'>
+						No pressure. No minimum. Just smarter styling from
+						wherever you're starting.
+					</p>
+				</div>
+			),
+		},
+	]
+
+	return (
+		<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+			{/* Left Column */}
+			<div className='space-y-4'>
+				<FAQItem
+					question={faqs[0].q}
+					answer={faqs[0].a}
+					open={openIndex === 0}
+					onClick={() => setOpenIndex(openIndex === 0 ? null : 0)}
+				/>
+				<FAQItem
+					question={faqs[1].q}
+					answer={faqs[1].a}
+					open={openIndex === 1}
+					onClick={() => setOpenIndex(openIndex === 1 ? null : 1)}
+				/>
+			</div>
+			{/* Right Column */}
+			<div className='space-y-4'>
+				<FAQItem
+					question={faqs[2].q}
+					answer={faqs[2].a}
+					open={openIndex === 2}
+					onClick={() => setOpenIndex(openIndex === 2 ? null : 2)}
+				/>
+				<FAQItem
+					question={faqs[3].q}
+					answer={faqs[3].a}
+					open={openIndex === 3}
+					onClick={() => setOpenIndex(openIndex === 3 ? null : 3)}
+				/>
+			</div>
 		</div>
 	)
 }
@@ -149,11 +309,11 @@ function CountdownTimer() {
 	}, [])
 
 	const boxClass =
-		'text-accent rounded-lg w-14 h-14 md:w-18 md:h-18 flex flex-col items-center justify-center mx-1 shadow-md'
+		'text-neutral-dark bg-white/80 border border-neutral-dark/10 rounded-xl w-14 h-14 md:w-20 md:h-20 flex flex-col items-center justify-center mx-1 backdrop-blur-sm shadow-md'
 	const numberClass =
-		'font-mono text-lg text-accent md:text-xl font-extrabold leading-none tracking-wider'
+		'font-mono text-lg md:text-xl font-extrabold leading-none tracking-wider text-neutral-dark'
 	const labelClass =
-		'text-xs md:text-sm font-medium mt-1 tracking-wide text-accent uppercase'
+		'text-[10px] md:text-xs font-medium mt-1 tracking-[0.18em] text-neutral-dark/70 uppercase'
 
 	return (
 		<div className='flex justify-center items-center gap-0 mt-2'>
@@ -239,10 +399,10 @@ function EbookSection() {
 			{!mounted ? (
 				<div className='w-full max-w-md mx-auto flex flex-col gap-4'>
 					<div className='w-full flex flex-col gap-3'>
-						<div className='flex-1 px-4 py-3 rounded-lg border border-accent/30 bg-[#efe9e4] h-[52px]'></div>
-						<div className='flex-1 px-4 py-3 rounded-lg border border-accent/30 bg-[#efe9e4] h-[52px]'></div>
+						<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 bg-soft-accent/40 h-[52px]'></div>
+						<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 bg-soft-accent/40 h-[52px]'></div>
 					</div>
-					<div className='w-full bg-[#f8c255] text-accent font-bold px-6 py-3 rounded-lg text-base capitalize font-fraunces italic text-center'>
+					<div className='w-full bg-accent text-neutral-dark font-bold px-6 py-3 rounded-lg text-base capitalize font-fraunces italic text-center'>
 						Download eBook Now
 					</div>
 				</div>
@@ -258,7 +418,7 @@ function EbookSection() {
 							placeholder='Enter your name'
 							value={name}
 							onChange={(e) => setName(e.target.value)}
-							className='flex-1 px-4 py-3 rounded-lg border border-accent/30 focus:outline-none text-accent bg-[#efe9e4] text-base'
+							className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 focus:outline-none text-accent bg-soft-accent/30 text-base'
 						/>
 						<input
 							type='email'
@@ -266,13 +426,13 @@ function EbookSection() {
 							placeholder='Enter your e-mail address'
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
-							className='flex-1 px-4 py-3 rounded-lg border border-accent/30 focus:outline-none text-accent bg-[#efe9e4] text-base'
+							className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 focus:outline-none text-accent bg-soft-accent/30 text-base'
 						/>
 					</div>
 					<button
 						type='submit'
 						disabled={loading}
-						className='w-full bg-[#f8c255] text-accent font-bold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-[#f0d297] shadow-md text-base capitalize font-fraunces italic cursor-pointer disabled:opacity-60'
+						className='btn-primary w-full uppercase tracking-wide text-sm font-fraunces italic cursor-pointer disabled:opacity-60'
 					>
 						{loading ? 'Processing...' : 'Download eBook Now'}
 					</button>
@@ -289,12 +449,138 @@ function EbookSection() {
 }
 
 const page = () => {
+	const featureHighlights = [
+		{
+			title: 'Be a co-creator',
+			description:
+				'Help shape features, test updates, and influence design with direct feedback access.',
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+					/>
+				</svg>
+			),
+		},
+		{
+			title: 'Build your capsule with ease',
+			description:
+				'Upload pieces, auto-tag by category and color, and organise outfits by occasions in minutes.',
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+					/>
+				</svg>
+			),
+		},
+		{
+			title: 'Plan faster mornings',
+			description:
+				'Wake up knowing exactly which outfit to wear for work, weekends, dates and everything between.',
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+					/>
+				</svg>
+			),
+		},
+	]
+
+	const valueHighlights = [
+		{
+			title: 'Works everywhere',
+			description:
+				'Responsive on mobile and desktop—no app install needed, just log in and plan.',
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+					/>
+				</svg>
+			),
+		},
+		{
+			title: 'Lifetime access, no fluff',
+			description:
+				'Locked-in pricing forever. No pushy upsells—just smart outfit planning tailored to your style.',
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
+					/>
+				</svg>
+			),
+		},
+		{
+			title: 'Maximise what you already own',
+			description:
+				"See new outfit combinations instantly. It's not about buying more, it's about using better.",
+			icon: (
+				<svg
+					className='w-5 h-5 text-white'
+					fill='none'
+					stroke='currentColor'
+					viewBox='0 0 24 24'
+				>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						strokeWidth={2}
+						d='M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+					/>
+				</svg>
+			),
+		},
+	]
+
 	return (
-		<div className='min-h-screen bg-[#f8f4f0] text-accent font-inter'>
+		<div className='min-h-screen bg-neutral-light text-neutral-dark font-inter'>
 			{/* Main Content */}
 			<main>
 				{/* Hero Section - Split Screen */}
-				<section className='w-full bg-[#f8f4f0] py-16 md:py-20 px-6 md:px-12 text-center md:text-left'>
+				<section className='w-full bg-[#f8f4f0] py-16 md:py-20 px-6 md:px-12 text-center md:text-left relative'>
 					<div className='max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16'>
 						{/* Left: Text Content */}
 						<div className='flex-1 space-y-6'>
@@ -315,9 +601,9 @@ const page = () => {
 							{/* Headline */}
 							<h1 className='text-[32px] md:text-4xl lg:text-5xl font-extrabold leading-tight font-fraunces'>
 								<span className='text-accent'>Get </span>
-								<span className='text-[#ad4c5c]'>1000+</span>
+								<span className='text-[#ac4b5c]'>1000+</span>
 								<span className='text-accent'> Outfit </span>
-								<span className='text-[#ad4c5c]'>Ideas</span>
+								<span className='text-[#ac4b5c]'>Ideas</span>
 								<span className='text-accent'>
 									{' '}
 									from Clothes You Already Own
@@ -387,111 +673,180 @@ const page = () => {
 
 						{/* Right: Hero Image */}
 						<div className='flex-1'>
-							<div className='rounded-2xl overflow-hidden shadow-2xl'>
+							<div className='rounded-2xl overflow-hidden'>
 								<Image
 									src='/assets/landing-page/hero-section-img.jpg'
 									alt='Capsulify App Preview'
-									width={600}
+									width={700}
 									height={800}
 									className='w-full h-auto object-cover'
 								/>
 							</div>
 						</div>
 					</div>
+					{/* Pink Accent Band at Bottom */}
+					<div className='absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-[#d8b4b1] to-transparent opacity-60'></div>
 				</section>
 
 				{/* Closet Thoughts Section (between Hero and Sound Familiar) */}
-				<section className='w-full py-12 px-6 md:px-12'>
-					<div className='max-w-7xl mx-auto'>
-						<div className='p-0 md:p-0'>
-							<h2 className='text-2xl md:text-3xl font-extrabold font-fraunces text-accent text-center mb-8 md:mb-10'>
-								Have you ever looked in your closet and thought:
+				<section className='section-wrapper tight px-6 md:px-10'>
+					<div className='max-w-6xl mx-auto'>
+						<div className='flex flex-col items-center text-center space-y-4 mb-8'>
+							<span className='badge-soft'>
+								Pain points we heard from 100+ closets
+							</span>
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary text-center'>
+								Have you ever looked in your closet and thought…
 							</h2>
-							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
+						</div>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
+							{[
+								{
+									title: 'I have so many clothes but always wear the same outfits.',
+									body: 'Your closet is full of great pieces, but you default to the same combinations because they feel safe and familiar.',
+								},
+								{
+									title: 'This top is cute but I never know what to pair it with.',
+									body: 'Some clothes look great on their own, but you struggle to create outfits that make them shine together.',
+								},
+								{
+									title: 'I end up buying more instead of wearing what I have.',
+									body: "When you're stuck, it's easier to shop than to experiment with combinations you've never tried.",
+								},
+								{
+									title: "I can't recreate those outfit ideas I saved.",
+									body: "Pinterest looks are inspiring but when you try to recreate them with your actual clothes, they don't quite hit the same.",
+								},
+								{
+									title: "I don't know which of my pieces actually look good together.",
+									body: 'Not all combinations work, and trying everything on feels exhausting. You need a smarter way to see what works.',
+								},
+								{
+									title: 'I want to maximize my existing wardrobe.',
+									body: 'You believe in capsule wardrobes but need help discovering all the outfit combinations your clothes can create.',
+								},
+							].map((item, index) => (
+								<div
+									key={index}
+									className='relative card-base bg-white text-left md:text-left px-6 py-8'
+								>
+									<span className='absolute top-6 right-6 text-5xl font-extrabold text-accent-4 select-none'>
 										❞
 									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										I have so many clothes but always wear
-										the same outfits.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										Your closet is full of great pieces, but
-										you default to the same combinations
-										because they feel safe and familiar.
+									<h3 className='text-lg font-bold text-neutral-dark mb-4 mt-8'>
+										{item.title}
+									</h3>
+									<p className='text-sm text-neutral-dark/70 leading-relaxed'>
+										{item.body}
 									</p>
 								</div>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
-										❞
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* Founder Story Section */}
+				<section className='section-wrapper tight px-6 md:px-10'>
+					<div className='max-w-6xl mx-auto bg-soft-accent/35 rounded-3xl px-6 md:px-12'>
+						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary text-center mb-12'>
+							From frustration to function: why I built Capsulify
+						</h2>
+						<div className='flex flex-col md:flex-row gap-10 md:gap-14 items-center'>
+							{/* Left: Image */}
+							<div className='flex-1 w-full relative'>
+								<div className='rounded-2xl overflow-hidden'>
+									<Image
+										src='/assets/landing-page/founder-img.jpg'
+										alt='Ayuni, Founder of Capsulify'
+										width={520}
+										height={740}
+										className='w-full h-auto object-cover'
+									/>
+								</div>
+							</div>
+							<div className='hidden md:block w-[1px] bg-accent/40 h-full'></div>
+							{/* Right: Text */}
+							<div className='flex-1 space-y-5 text-base text-neutral-dark/80 leading-relaxed'>
+								<p>
+									Hi, I'm Ayuni, founder of Capsulify. Like
+									many women, I used to have a closet full of
+									clothes but still felt like I had nothing to
+									wear. I'd buy new pieces, save outfit
+									inspiration on Pinterest, but when it came
+									time to get dressed, I'd just reach for the
+									same few combinations.
+								</p>
+								<p>So I tried to fix it the “right” way:</p>
+								<p>
+									I bought capsule wardrobe books. Followed
+									the formulas. Bought every recommended
+									piece—tops, bottoms, shoes, bags. But when
+									it came time to create outfits from my
+									existing pieces? I was squinting at a table
+									of text instructions trying to figure out
+									what goes with what. I thought,
+									<span className='font-bold text-primary'>
+										{' '}
+										Why isn't there an app for this?
 									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										This top is cute but I never know what
-										to pair it with.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										Some clothes look great on their own,
-										but you struggle to create outfits that
-										make them shine together.
-									</p>
-								</div>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
-										❞
+								</p>
+								<p>
+									And the advice itself? Cookie-cutter. One
+									stylist claimed,
+									<span className='font-bold text-primary'>
+										{' '}
+										“Just pair basics together.”
+									</span>{' '}
+									But which basics? With what? That wasn't
+									helping me create actual outfits.
+								</p>
+								<p>
+									I turned to Pinterest and Instagram for
+									outfit ideas, but when I tried to recreate
+									those looks with my actual clothes, they
+									never quite worked. I couldn't figure out
+									which of my pieces would create those
+									combinations, so I ended up buying more
+									clothes trying to match what I saw.
+								</p>
+								<p>
+									I tried every fashion app I could find but
+									they were overwhelming. Too many features,
+									too much content, too focused on shopping.
+									They assumed I wanted to be a fashionista. I
+									didn't. I just wanted to see{' '}
+									<span className='font-bold text-primary'>
+										more outfit combinations from my
+										existing wardrobe, not buy more.
 									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										I end up buying more instead of wearing
-										what I have.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										When you're stuck, it's easier to shop
-										than to experiment with combinations
-										you've never tried.
-									</p>
-								</div>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-5xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
-										❞
+								</p>
+								<p>
+									So I decided to build what I couldn't find
+									with two friends, Martin and Aditi.
+									Capsulify is the tool I wish I had years
+									ago.
+								</p>
+								<p>
+									It helps you see hundreds of outfit
+									combinations from your existing wardrobe. No
+									fluff. No pressure to shop. Just smart
+									outfit planning that shows you which pieces
+									work together for you.
+								</p>
+								<p className='font-bold text-primary'>
+									This isn't about buying a whole new
+									wardrobe. It's about finally maximizing the
+									clothes you already own.
+								</p>
+								<p className='pt-4'>
+									<span className='font-bold text-primary text-lg'>
+										Ayuni
 									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										I can't recreate those outfit ideas I
-										saved.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										Pinterest looks are inspiring but when
-										you try to recreate them with your
-										actual clothes, they don't quite hit the
-										same.
-									</p>
-								</div>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
-										❞
+									<br />
+									<span className='text-sm md:text-base text-neutral-dark/70'>
+										Founder, Capsulify
 									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										I don't know which of my pieces actually
-										look good together.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										Not all combinations work, and trying
-										everything on feels exhausting. You need
-										a smarter way to see what works.
-									</p>
-								</div>
-								<div className='relative bg-secondary rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col text-center'>
-									<span className='absolute top-5 right-6 text-4xl md:text-5xl font-extrabold text-[#f8c255]/50 select-none'>
-										❞
-									</span>
-									<p className='text-lg text-accent mt-12 mb-4 font-bold'>
-										I want to maximize my existing wardrobe.
-									</p>
-									<p className='text-sm text-accent/70 leading-relaxed'>
-										You believe in capsule wardrobes but
-										need help discovering all the outfit
-										combinations your clothes can create.
-									</p>
-								</div>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -510,11 +865,11 @@ const page = () => {
 							</p>
 						</div>
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft pink-soft rounded-none p-8'>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Goal
 								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+								<h3 className='text-base font-bold  text-accent mb-3 mt-12 text-left'>
 									I want to wear all the clothes I own, not
 									just my go-to pieces.
 								</h3>
@@ -524,8 +879,8 @@ const page = () => {
 									style them.
 								</p>
 							</div>
-							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft bg-white rounded-xl p-8 '>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Outcome
 								</span>
 								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
@@ -538,8 +893,8 @@ const page = () => {
 									you've never tried.
 								</p>
 							</div>
-							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft bg-[#f3f0e9] rounded-xl p-8 '>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Outcome
 								</span>
 								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
@@ -552,8 +907,8 @@ const page = () => {
 									combinations.
 								</p>
 							</div>
-							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft bg-white rounded-xl p-8 '>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Goal
 								</span>
 								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
@@ -566,8 +921,8 @@ const page = () => {
 									routine effortless.
 								</p>
 							</div>
-							<div className='relative bg-[#f3f0e9] rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft bg-[#f3f0e9] rounded-xl p-8 '>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Feeling
 								</span>
 								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
@@ -580,8 +935,8 @@ const page = () => {
 									you already own.
 								</p>
 							</div>
-							<div className='relative bg-white rounded-xl p-8 shadow-lg'>
-								<span className='absolute top-4 left-4 bg-[#994351]/70 text-secondary text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
+							<div className='relative pink-soft bg-white rounded-xl p-8 '>
+								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
 									Feeling
 								</span>
 								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
@@ -612,7 +967,7 @@ const page = () => {
 							<h2 className='text-4xl md:text-5xl font-extrabold font-fraunces text-accent-2 mb-2'>
 								How It Works
 							</h2>
-							<p className='text-base md:text-md text-accent/70 max-w-2xl mx-auto font-semibold'>
+							<p className='text-base md:text-md text-primary max-w-2xl mx-auto font-semibold capitalize'>
 								From closet chaos to curated style
 							</p>
 						</div>
@@ -620,11 +975,11 @@ const page = () => {
 						{/* Four Step Cards */}
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 							{/* Step 1 */}
-							<div className='bg-[#f3f0e9] rounded-xl p-6 shadow-lg relative'>
-								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#f8c255]/40'>
+							<div className='bg-[#f3f0e9] rounded-xl p-6 pb-12 shadow-lg relative'>
+								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#d8b4b1]'>
 									01
 								</div>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
+								<div className='w-10 h-10 bg-primary rounded-lg flex items-center justify-center mb-4'>
 									<svg
 										className='w-5 h-5 text-white'
 										fill='none'
@@ -655,11 +1010,11 @@ const page = () => {
 								</p>
 							</div>
 
-							<div className='bg-white rounded-xl p-6 shadow-lg relative'>
-								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#f8c255]/40'>
+							<div className='rounded-xl p-6 pb-12 shadow-lg relative'>
+								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#d8b4b1]'>
 									02
 								</div>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
+								<div className='w-10 h-10 bg-[#ac4b5c] rounded-lg flex items-center justify-center mb-4'>
 									<svg
 										className='w-5 h-5 text-white'
 										fill='none'
@@ -683,11 +1038,11 @@ const page = () => {
 								</p>
 							</div>
 
-							<div className='bg-[#f3f0e9] rounded-xl p-6 shadow-lg relative'>
-								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#f8c255]/40'>
+							<div className='rounded-xl p-6 pb-12 shadow-lg relative'>
+								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#d8b4b1]'>
 									03
 								</div>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
+								<div className='w-10 h-10 bg-[#ac4b5c] rounded-lg flex items-center justify-center mb-4'>
 									<svg
 										className='w-5 h-5 text-white'
 										fill='none'
@@ -712,11 +1067,11 @@ const page = () => {
 							</div>
 
 							{/* Step 4 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg relative'>
-								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#f8c255]/40'>
+							<div className='rounded-xl p-6 pb-12 shadow-lg relative'>
+								<div className='absolute top-4 right-4 text-4xl font-extrabold text-[#d8b4b1]'>
 									04
 								</div>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
+								<div className='w-10 h-10 bg-[#ac4b5c] rounded-lg flex items-center justify-center mb-4'>
 									<svg
 										className='w-5 h-5 text-white'
 										fill='none'
@@ -758,9 +1113,9 @@ const page = () => {
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 							{/* Benefit 1 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -781,9 +1136,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 2 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -804,9 +1159,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 3 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -828,9 +1183,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 4 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -852,9 +1207,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 5 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -875,9 +1230,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 6 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg text-left'>
+							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-[#f8c255]/25 flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -904,7 +1259,7 @@ const page = () => {
 				{/* Capsulify Is For You If Section */}
 				<section className='w-full py-20 px-6 md:px-12'>
 					<div className='max-w-6xl mx-auto text-center space-y-10'>
-						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-accent-2'>
+						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary'>
 							<span>Capsulify is </span>
 							<span className='italic'>for you</span>
 							<span> if...</span>
@@ -912,46 +1267,31 @@ const page = () => {
 
 						<div className='space-y-4 text-left flex justify-center flex-col items-center'>
 							{/* Item */}
-							<div className='md:md:w-[55%] bg-white rounded-xl p-4 shadow-lg flex items-center justify-start gap-4'>
-								<div className='w-12 md:w-7 h-7 rounded-full border border-accent/20 flex items-center justify-center text-[12px] text-accent/80 mt-0.5'>
-									1
-								</div>
+							<div className='md:md:w-[55%] bg-[#d8b4b1]/25 text-primary rounded-xl p-4 flex items-center justify-start gap-4'>
 								<p className='text-sm md:text-base text-accent'>
 									You have lots of clothes, but feel like you
 									wear the same few things
 								</p>
 							</div>
-							<div className='md:w-[55%] bg-white rounded-xl p-4 shadow-lg flex items-center justify-start gap-4'>
-								<div className='w-12 md:w-7 h-7 rounded-full border border-accent/20 flex items-center justify-center text-[12px] text-accent/80 mt-0.5'>
-									2
-								</div>
+							<div className='md:w-[55%] bg-[#d8b4b1]/25 text-primary rounded-xl p-4 flex items-center justify-start gap-4'>
 								<p className='text-sm md:text-base text-accent'>
 									You want to look good on dates, workdays,
 									and weekends effortlessly
 								</p>
 							</div>
-							<div className='md:w-[55%] bg-white rounded-xl p-4 shadow-lg flex items-center justify-start gap-4'>
-								<div className='w-12 md:w-7 h-7 rounded-full border border-accent/20 flex items-center justify-center text-[12px] text-accent/80 mt-0.5'>
-									3
-								</div>
+							<div className='md:w-[55%] bg-[#d8b4b1]/25 text-primary rounded-xl p-4 flex items-center justify-start gap-4'>
 								<p className='text-sm md:text-base text-accent'>
 									You want to maximize your existing wardrobe
 									and see more outfits
 								</p>
 							</div>
-							<div className='md:w-[55%] bg-white rounded-xl p-4 shadow-lg flex items-center justify-start gap-4'>
-								<div className='w-10 md:w-7 h-7 rounded-full border border-accent/20 flex items-center justify-center text-[12px] text-accent/80 mt-0.5'>
-									4
-								</div>
+							<div className='md:w-[55%] bg-[#d8b4b1]/25 text-primary rounded-xl p-4 flex items-center justify-start gap-4'>
 								<p className='text-sm md:text-base text-accent'>
 									You don't want to pay $200+ for a stylist
 									every season
 								</p>
 							</div>
-							<div className='md:w-[55%] bg-white rounded-xl p-4 shadow-lg flex items-center justify-start gap-4'>
-								<div className='w-12 md:w-7 h-7 rounded-full border border-accent/20 flex items-center justify-center text-[12px] text-accent/80 mt-0.5'>
-									5
-								</div>
+							<div className='md:w-[55%] bg-[#d8b4b1]/25 text-primary rounded-xl p-4 flex items-center justify-start gap-4'>
 								<p className='text-sm md:text-base text-accent'>
 									You want to stop buying more and wear what
 									you already have
@@ -964,257 +1304,130 @@ const page = () => {
 								href='https://app.capsulify.app/'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='inline-flex items-center justify-center bg-[#f8c255] text-accent font-bold px-8 py-3 rounded-lg transition-colors hover:bg-[#f0d297] text-sm font-fraunces'
+								className='btn-primary inline-flex items-center justify-center uppercase tracking-wide text-sm'
 							>
-								PLAY WITH CAPSULIFY NOW
+								Play with Capsulify now
 							</a>
 						</div>
 					</div>
 				</section>
 
-				{/* Features Grid Section */}
-				<section className='w-full bg-secondary py-10 px-6 md:px-12'>
+				{/* FAQ Section */}
+				<section className='w-full py-10 px-6 md:px-12'>
 					<div className='max-w-6xl mx-auto'>
-						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-accent-2 text-center mb-8'>
-							What You'll Get
-						</h2>
-						{/* Six Feature Cards */}
-						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-							{/* Feature 1 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
-										/>
-									</svg>
-								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Be a Co-Creator
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Help shape features, test updates, and
-									influence design
-								</p>
-							</div>
+						<div className='p-8 md:p-10'>
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-accent-2 text-center mb-10'>
+								FAQs
+							</h2>
 
-							{/* Feature 2 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
-										/>
-									</svg>
-								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Build Your Own Capsule
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Build your closet from scratch with
-									automatic tagging by category, color,
-									occasion and more to come.
-								</p>
-							</div>
+							<FAQSection />
+						</div>
+					</div>
+				</section>
 
-							{/* Feature 3 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
-										/>
-									</svg>
+				{/* Features Grid Section */}
+				<section className='section-wrapper px-6 md:px-10'>
+					<div className='max-w-6xl mx-auto space-y-12'>
+						<div className='text-center space-y-4'>
+							<span className='badge-soft'>
+								What you'll unlock
+							</span>
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary'>
+								Everything you need to get dressed with clarity
+							</h2>
+							<p className='text-neutral-dark/70 max-w-2xl mx-auto text-base md:text-lg'>
+								The same content—now structured to show the
+								transformation: from getting organised to
+								maximising every piece you already own.
+							</p>
+						</div>
+						<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+							{featureHighlights.map((feature, index) => (
+								<div
+									key={`feature-${index}`}
+									className='card-base bg-white'
+								>
+									<div className='w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-5'>
+										{feature.icon}
+									</div>
+									<h3 className='text-lg font-semibold text-neutral-dark mb-3'>
+										{feature.title}
+									</h3>
+									<p className='text-sm text-neutral-dark/70 leading-relaxed'>
+										{feature.description}
+									</p>
 								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Save Time Daily
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Wake up knowing exactly what to wear — and
-									loving how it looks on you
-								</p>
-							</div>
-
-							{/* Feature 4 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
-										/>
-									</svg>
+							))}
+						</div>
+						<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+							{valueHighlights.map((value, index) => (
+								<div
+									key={`value-${index}`}
+									className='card-base bg-white'
+								>
+									<div className='w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-5'>
+										{value.icon}
+									</div>
+									<h3 className='text-lg font-semibold text-neutral-dark mb-3'>
+										{value.title}
+									</h3>
+									<p className='text-sm text-neutral-dark/70 leading-relaxed'>
+										{value.description}
+									</p>
 								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Ease of Use
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Works on Mobile and Desktop– no app install
-									needed
-								</p>
-							</div>
-
-							{/* Feature 5 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
-										/>
-									</svg>
-								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Lifetime Deal
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Lifetime pricing locked in — this tier will
-									never open again
-								</p>
-							</div>
-
-							{/* Feature 6 */}
-							<div className='bg-white rounded-xl p-6 shadow-lg'>
-								<div className='w-10 h-10 bg-[#f8c255] rounded-lg flex items-center justify-center mb-4'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-										/>
-									</svg>
-								</div>
-								<h3 className='text-base font-bold text-accent mb-3'>
-									Shop Smarter
-								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed'>
-									Know exactly what's missing from your
-									wardrobe before you buy anything new.
-								</p>
-							</div>
+							))}
 						</div>
 					</div>
 				</section>
 
 				{/* Final CTA Section */}
-				<section className='w-full py-20 px-6 md:px-12'>
-					<div className='max-w-4xl mx-auto text-center space-y-8 bg-white rounded-2xl p-12 shadow-xl'>
+				<section className='section-wrapper px-6 md:px-10 bg-primary text-neutral-light'>
+					<div className='max-w-4xl mx-auto text-center space-y-8'>
 						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces'>
-							<span className='text-accent'>
-								Ready to Transform Your{' '}
-							</span>
-							<span className='text-[#ad4c5c]'>Wardrobe?</span>
+							Ready to transform your wardrobe?
 						</h2>
-						<p className='text-base text-accent/70'>
-							Join thousands of happy users who've discovered the
-							joy of styling with what they already own.
-						</p>
-
-						{/* Features */}
-						<div className='flex flex-wrap justify-center gap-6'>
-							<div className='flex items-center gap-2'>
-								<svg
-									className='w-5 h-5 text-[#f8c255]'
-									fill='currentColor'
-									viewBox='0 0 20 20'
-								>
-									<path
-										fillRule='evenodd'
-										d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-										clipRule='evenodd'
-									/>
-								</svg>
-								<span className='text-accent font-semibold'>
-									Free to start
-								</span>
-							</div>
-							<div className='flex items-center gap-2'>
-								<svg
-									className='w-5 h-5 text-[#f8c255]'
-									fill='currentColor'
-									viewBox='0 0 20 20'
-								>
-									<path
-										fillRule='evenodd'
-										d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-										clipRule='evenodd'
-									/>
-								</svg>
-								<span className='text-accent font-semibold'>
-									No credit card required
-								</span>
-							</div>
-							<div className='flex items-center gap-2'>
-								<svg
-									className='w-5 h-5 text-[#f8c255]'
-									fill='currentColor'
-									viewBox='0 0 20 20'
-								>
-									<path
-										fillRule='evenodd'
-										d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-										clipRule='evenodd'
-									/>
-								</svg>
-								<span className='text-accent font-semibold'>
-									Cancel anytime
-								</span>
-							</div>
+						<div className='space-y-3 max-w-2xl mx-auto'>
+							<p className='text-xl font-semibold'>
+								Try it risk-free. Upload your first 12 pieces
+								for free and see the combinations waiting in
+								your closet.
+							</p>
 						</div>
-
-						{/* CTA Buttons */}
+						<div className='flex flex-wrap justify-center gap-4 text-sm font-medium text-neutral-light/85'>
+							{[
+								'Free to start',
+								'No credit card required',
+								'Cancel anytime',
+							].map((pill) => (
+								<span
+									key={pill}
+									className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm'
+								>
+									<svg
+										className='w-4 h-4 text-accent'
+										fill='none'
+										stroke='currentColor'
+										viewBox='0 0 24 24'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth={2}
+											d='M5 13l4 4L19 7'
+										/>
+									</svg>
+									{pill}
+								</span>
+							))}
+						</div>
 						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 							<a
 								href='https://app.capsulify.app/'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='bg-gradient-to-r from-[#f8c255] to-[#f0d297] text-accent font-bold px-10 py-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm uppercase font-fraunces inline-flex items-center justify-center gap-2'
+								className='btn-primary inline-flex items-center justify-center gap-2 uppercase tracking-wide text-sm'
 							>
-								<span>Get Started Now</span>
+								Get instant access
 								<svg
 									className='w-4 h-4'
 									fill='none'
@@ -1231,28 +1444,28 @@ const page = () => {
 							</a>
 							<a
 								href='#how-it-works'
-								className='bg-white text-accent font-semibold px-10 py-4 rounded-lg border-2 border-accent/20 transition-all duration-300 hover:border-accent/40 text-sm'
+								className='inline-flex items-center justify-center gap-2 uppercase tracking-wide text-sm px-8 py-3 rounded-xl border border-neutral-light/40 text-neutral-light bg-white/5 hover:bg-white/10 transition-colors'
 							>
-								Watch Demo
+								See how it works
 							</a>
 						</div>
-
-						{/* Privacy Statement */}
-						<div className='flex items-center justify-center gap-2 text-sm text-accent/60'>
+						<div className='flex items-center justify-center gap-2 text-sm text-neutral-light/70'>
 							<svg
-								className='w-5 h-5 text-[#f8c255]'
-								fill='currentColor'
-								viewBox='0 0 20 20'
+								className='w-5 h-5 text-accent'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
 							>
 								<path
-									fillRule='evenodd'
-									d='M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z'
-									clipRule='evenodd'
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M12 11c-1.657 0-3-1.343-3-3V5a3 3 0 116 0v3c0 1.657-1.343 3-3 3zm-7 9a7 7 0 0114 0H5z'
 								/>
 							</svg>
 							<span>
-								Your data is secure and private. We never share
-								your wardrobe information.
+								Your data stays private. We only use it to build
+								better outfits for you.
 							</span>
 						</div>
 					</div>
@@ -1260,13 +1473,13 @@ const page = () => {
 			</main>
 
 			{/* Footer */}
-			<footer className='w-full bg-[#efe9e4] py-12 px-6 md:px-12 border-t border-accent/10'>
-				<div className='max-w-6xl mx-auto'>
-					<div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-8'>
+			<footer className='w-full text-primary py-16 px-6 md:px-12'>
+				<div className='max-w-6xl mx-auto space-y-12'>
+					<div className='grid grid-cols-1 md:grid-cols-4 gap-10'>
 						{/* Branding */}
 						<div className='space-y-4'>
 							<div className='flex items-center gap-3'>
-								<div className='w-10 h-10 bg-gradient-to-br from-[#f8c255] to-[#ad4c5c] rounded-lg flex items-center justify-center'>
+								<div className='w-10 h-10 brand-gradient rounded-lg flex items-center justify-center'>
 									<Image
 										src='/assets/images/logo/logo-light.svg'
 										alt='Capsulify'
@@ -1275,26 +1488,20 @@ const page = () => {
 										className='w-6 h-6'
 									/>
 								</div>
-								<span className='font-bold text-base text-accent'>
+								<span className='font-bold text-base'>
 									Capsulify
 								</span>
 							</div>
-							<p className='text-sm text-accent/70'>
-								Your smart wardrobe assistant for creating
-								endless outfit combinations.
-							</p>
 						</div>
 
 						{/* Product Links */}
 						<div>
-							<h3 className='font-bold text-accent mb-4'>
-								Product
-							</h3>
-							<ul className='space-y-2 text-sm text-accent/70'>
+							<h3 className='font-bold mb-4'>Product</h3>
+							<ul className='space-y-2 text-sm'>
 								<li>
 									<a
 										href='#features'
-										className='hover:text-accent transition-colors'
+										className=' transition-colors'
 									>
 										Features
 									</a>
@@ -1328,32 +1535,14 @@ const page = () => {
 
 						{/* Company Links */}
 						<div>
-							<h3 className='font-bold text-accent mb-4'>
-								Company
-							</h3>
-							<ul className='space-y-2 text-sm text-accent/70'>
+							<h3 className='font-bold  mb-4'>Company</h3>
+							<ul className='space-y-2 text-sm /70'>
 								<li>
 									<a
 										href='#about'
-										className='hover:text-accent transition-colors'
+										className='hover: transition-colors'
 									>
 										About Us
-									</a>
-								</li>
-								<li>
-									<a
-										href='#blog'
-										className='hover:text-accent transition-colors'
-									>
-										Blog
-									</a>
-								</li>
-								<li>
-									<a
-										href='#careers'
-										className='hover:text-accent transition-colors'
-									>
-										Careers
 									</a>
 								</li>
 								<li>
@@ -1369,47 +1558,22 @@ const page = () => {
 
 						{/* Legal Links */}
 						<div>
-							<h3 className='font-bold text-accent mb-4'>
-								Legal
-							</h3>
-							<ul className='space-y-2 text-sm text-accent/70'>
+							<h3 className='font-bold mb-4'>Legal</h3>
+							<ul className='space-y-2 text-sm'>
 								<li>
 									<a
 										href='/privacy-policy'
-										className='hover:text-accent transition-colors'
+										className='transition-colors'
 									>
 										Privacy Policy
-									</a>
-								</li>
-								<li>
-									<a
-										href='#terms'
-										className='hover:text-accent transition-colors'
-									>
-										Terms of Service
-									</a>
-								</li>
-								<li>
-									<a
-										href='#cookies'
-										className='hover:text-accent transition-colors'
-									>
-										Cookie Policy
 									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 
-					{/* Bottom Bar */}
-					<div className='border-t border-accent/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4'>
-						<p className='text-sm text-accent/70'>
-							© 2025 Capsulify. All rights reserved.
-						</p>
-						<p className='text-sm text-accent/70'>
-							Made with <span className='text-[#ad4c5c]'>❤️</span>{' '}
-							for fashion lovers
-						</p>
+					<div className='pt-6 flex flex-col md:flex-row justify-center items-center gap-4 text-sm'>
+						<p>© 2025 Capsulify. All rights reserved.</p>
 					</div>
 				</div>
 			</footer>

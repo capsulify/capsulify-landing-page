@@ -1,12 +1,13 @@
 @import 'tailwindcss';
 
 :root {
-	--primary-background: #f9f2ec;
-	--secondary-background: #eee7e1;
-	--accent-color: #4a3427;
-	--primary-color: #f9f2ec;
-	--secondary-color: #eee7e1;
-	--landing-page: #994351;
+	--color-primary: #ac4b5c;
+	--color-accent: #f8c255;
+	--color-neutral-light: #f9f2ec;
+	--color-neutral-dark: #4a3427;
+	--color-soft-accent: #d8b4b1;
+	--color-white: #ffffff;
+
 	--font-inter: var(--font-inter);
 	--font-fraunces: var(--font-fraunces);
 }
@@ -29,57 +30,151 @@
 	font-family: var(--font-inter), sans-serif;
 }
 
+.bg-neutral-light {
+	background-color: var(--color-neutral-light);
+}
+
 .bg-primary {
-	background-color: #f9f2ec;
+	background-color: var(--color-primary);
+}
+
+.bg-primary-soft {
+	background-color: rgba(172, 75, 92, 0.07);
 }
 
 .bg-accent {
-	background-color: #4a3427;
+	background-color: var(--color-accent);
 }
 
-.bg-secondary {
-	background-color: #eee7e1;
+.bg-soft-accent {
+	background-color: var(--color-soft-accent);
 }
 
-.bg-accent-3 {
-	background-color: #a88f81;
-}
-
-.bg-accent-2 {
-	background-color: #994351;
-}
-
-.text-accent {
-	color: var(--accent-color);
-}
-
-.text-accent-2 {
-	color: #994351;
+.bg-neutral-dark {
+	background-color: var(--color-neutral-dark);
 }
 
 .text-primary {
-	color: var(--primary-color);
+	color: var(--color-primary);
 }
 
-.text-secondary {
-	color: var(--secondary-color);
+.text-accent-4 {
+	color: var(--color-accent);
 }
 
-.border-secondary {
-	border: 1px solid var(--accent-color);
+.text-neutral-dark {
+	color: var(--color-neutral-dark);
 }
 
-.text-accent {
-	color: var(--accent-color);
+.text-neutral-light {
+	color: var(--color-neutral-light);
 }
 
-.border-accent {
-	border-color: var(--accent-color);
+.text-soft-accent {
+	color: var(--color-soft-accent);
 }
 
-.fill-accent {
-	filter: brightness(0) saturate(100%) invert(19%) sepia(22%) saturate(883%)
-		hue-rotate(339deg) brightness(95%) contrast(90%);
+.border-neutral {
+	border-color: rgba(74, 52, 39, 0.1);
+}
+
+.border-primary {
+	border-color: var(--color-primary);
+}
+
+.btn-primary {
+	background-color: var(--color-accent);
+	color: var(--color-neutral-dark);
+	border: none;
+	border-radius: 0.75rem;
+	padding: 0.9rem 1.8rem;
+	font-weight: 700;
+	font-family: var(--font-fraunces), serif;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+	box-shadow: 0 20px 45px -20px rgba(248, 194, 85, 0.55);
+}
+
+.btn-primary:hover {
+	transform: translateY(-2px);
+	background-color: #e6b54d;
+	box-shadow: 0 25px 55px -20px rgba(248, 194, 85, 0.65);
+}
+
+.btn-secondary {
+	background: transparent;
+	border: 1px solid var(--color-primary);
+	color: var(--color-primary);
+	border-radius: 0.75rem;
+	padding: 0.85rem 1.8rem;
+	font-weight: 600;
+	font-family: var(--font-inter), sans-serif;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+	background: rgba(172, 75, 92, 0.08);
+	color: var(--color-primary);
+}
+
+.card-base {
+	background: var(--color-white);
+	background: rgba(216, 180, 177, 0.2);
+	color: #4a3427;
+	border-radius: 0.75rem;
+	padding: 1.75rem;
+}
+
+.badge-soft {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.4rem 0.75rem;
+	border-radius: 999px;
+	background: rgba(216, 180, 177, 0.35);
+	color: var(--color-primary);
+	text-transform: uppercase;
+	font-size: 0.65rem;
+	letter-spacing: 0.12em;
+	font-weight: 600;
+}
+
+.pink-soft {
+	padding: 1.5rem;
+	padding-bottom: 3rem;
+	background: rgba(216, 180, 177, 0.35);
+	color: var(--color-primary);
+	font-size: 0.45rem;
+	font-weight: 600;
+	border-radius: 8px;
+}
+
+.section-wrapper {
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+}
+
+.section-wrapper.tight {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+
+.bg-accent-soft {
+	background-color: rgba(248, 194, 85, 0.25);
+}
+
+.brand-gradient {
+	background: linear-gradient(
+		135deg,
+		var(--color-accent) 0%,
+		var(--color-primary) 100%
+	);
+}
+
+.gold-gradient {
+	background: linear-gradient(
+		90deg,
+		rgba(172, 75, 92, 0.06) 0%,
+		rgba(248, 194, 85, 0.08) 100%
+	);
 }
 
 /* Base font size for rem calculations */
@@ -103,7 +198,7 @@ body {
 	padding: 0;
 	width: 100%;
 	overflow-x: hidden;
-	background-color: var(--primary-background);
+	background-color: var(--color-neutral-light);
 	font-family: 'Inter', sans-serif;
 }
 
