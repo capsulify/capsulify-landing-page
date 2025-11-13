@@ -695,7 +695,7 @@ const page = () => {
 							<span className='badge-soft'>
 								Pain points we heard from 100+ closets
 							</span>
-							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary text-center'>
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-neutral-dark text-center'>
 								Have you ever looked in your closet and thought…
 							</h2>
 						</div>
@@ -748,7 +748,7 @@ const page = () => {
 				{/* Founder Story Section */}
 				<section className='section-wrapper tight px-6 md:px-10'>
 					<div className='max-w-6xl mx-auto bg-soft-accent/35 rounded-3xl px-6 md:px-12'>
-						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary text-center mb-12'>
+						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-neutral-dark text-center mb-12'>
 							From frustration to function: why I built Capsulify
 						</h2>
 						<div className='flex flex-col md:flex-row gap-10 md:gap-14 items-center'>
@@ -1259,7 +1259,7 @@ const page = () => {
 				{/* Capsulify Is For You If Section */}
 				<section className='w-full py-20 px-6 md:px-12'>
 					<div className='max-w-6xl mx-auto text-center space-y-10'>
-						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary'>
+						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-neutral-dark'>
 							<span>Capsulify is </span>
 							<span className='italic'>for you</span>
 							<span> if...</span>
@@ -1332,7 +1332,7 @@ const page = () => {
 							<span className='badge-soft'>
 								What you'll unlock
 							</span>
-							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-primary'>
+							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-neutral-dark'>
 								Everything you need to get dressed with clarity
 							</h2>
 							<p className='text-neutral-dark/70 max-w-2xl mx-auto text-base md:text-lg'>
