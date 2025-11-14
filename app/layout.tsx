@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	title: 'Capsulify',
 	description: 'Capsule Wardrobe Landing Page',
 	icons: {
-		icon: '/assets/images/logo/logo.svg',
+		icon: '/assets/images/logo/logo-rose.png',
 	},
 }
 
