@@ -692,9 +692,6 @@ const page = () => {
 				<section className='section-wrapper tight px-6 md:px-10'>
 					<div className='max-w-6xl mx-auto'>
 						<div className='flex flex-col items-center text-center space-y-4 mb-8'>
-							<span className='badge-soft'>
-								Pain points we heard from 100+ closets
-							</span>
 							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-neutral-dark text-center'>
 								Have you ever looked in your closet and thought…
 							</h2>
@@ -1113,9 +1110,9 @@ const page = () => {
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 							{/* Benefit 1 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-12 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1128,7 +1125,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										Wake up knowing exactly what to wear and
 										loving how it looks on you
 									</p>
@@ -1136,9 +1133,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 2 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-10 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1151,7 +1148,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										Look completely different every day,
 										using just 30 smart pieces
 									</p>
@@ -1159,9 +1156,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 3 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-14 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1174,7 +1171,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										Feel elegant on dates, commanding at
 										work, and effortlessly stylish on
 										weekends
@@ -1183,9 +1180,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 4 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-12 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1198,7 +1195,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										Get real compliments. Not "you look
 										nice," but "that outfit is stunning on
 										you"
@@ -1207,9 +1204,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 5 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-8 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1222,7 +1219,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										Save thousands by buying less but
 										wearing more
 									</p>
@@ -1230,9 +1227,9 @@ const page = () => {
 							</div>
 
 							{/* Benefit 6 */}
-							<div className='bg-[#f8c255]/10 rounded-xl p-6 text-left'>
+							<div className='bg-[#93867E] rounded-xl p-6 text-left'>
 								<div className='flex items-start gap-3'>
-									<div className='w-10 h-6 rounded-full bg-accent-soft flex items-center justify-center mt-0.5'>
+									<div className='w-16 h-6 rounded-full bg-[#f9f2ec] flex items-center justify-center mt-0.5'>
 										<svg
 											className='w-3.5 h-3.5 text-accent'
 											viewBox='0 0 20 20'
@@ -1245,7 +1242,7 @@ const page = () => {
 											/>
 										</svg>
 									</div>
-									<p className='text-sm text-accent'>
+									<p className='text-sm text-[#f9f2ec]'>
 										No more panic shopping, style ruts, or
 										outfit regrets. Just confidence,
 										clarity, and compliments
