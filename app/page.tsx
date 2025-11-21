@@ -622,7 +622,16 @@ const page = () => {
 				!mobileHistoryGuardedRef.current &&
 				typeof history !== 'undefined'
 			) {
-				history.pushState({ exitIntentGuard: true }, '')
+				const baselineState = {
+					...(history.state || {}),
+					exitIntentBaseline: true,
+				}
+				history.replaceState(baselineState, '', window.location.href)
+				history.pushState(
+					{ exitIntentGuard: true },
+					'',
+					window.location.href
+				)
 				mobileHistoryGuardedRef.current = true
 			}
 
@@ -633,8 +642,12 @@ const page = () => {
 				) {
 					return
 				}
-				if (event.state && event.state.exitIntentGuard) {
-					history.pushState(event.state, '', window.location.href)
+				if (event.state && event.state.exitIntentBaseline) {
+					history.pushState(
+						{ exitIntentGuard: true },
+						'',
+						window.location.href
+					)
 					triggerModal()
 				}
 			}
