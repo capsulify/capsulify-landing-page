@@ -62,7 +62,7 @@ function FAQColumn({ faqs, columnKey }: FAQColumnProps) {
 
 function FAQItem({ question, answer, open, onClick }: FAQItemProps) {
 	return (
-		<div className='border-b border-neutral-dark/10 pb-4 last:border-b-0'>
+		<div className='pb-4'>
 			<button
 				className='flex items-center justify-between w-full text-left text-accent font-inter text-base md:text-lg font-bold focus:outline-none py-3 hover:text-accent/80 transition-colors'
 				onClick={onClick}
@@ -122,8 +122,8 @@ function FAQSection() {
 				<div className='space-y-3 text-sm md:text-sm text-accent/80 leading-relaxed pt-2'>
 					<p>
 						Simply upload your pieces (or use our starter
-						templates), and Capsulify shows you hundreds of outfit
-						combinations from your clothes.
+						templates), and Capsulify shows you hundreds of outfits
+						from your clothes.
 					</p>
 					<p className='font-semibold text-accent'>
 						You can start small:
@@ -131,7 +131,7 @@ function FAQSection() {
 					<ul className='list-disc list-inside space-y-2 ml-2'>
 						<li>
 							Upload just 5–10 core pieces to see your first
-							outfit combinations
+							outfits
 						</li>
 						<li>
 							Add more pieces over time as you build your digital
@@ -143,10 +143,9 @@ function FAQSection() {
 						</li>
 					</ul>
 					<p>
-						The more pieces you add, the more outfit combinations
-						you discover. You don't need a perfectly curated closet
-						— just start with what you have now and see the magic
-						happen.
+						The more pieces you add, the more outfits you discover.
+						You don't need a perfectly curated closet — just start
+						with what you have now and see the magic happen.
 					</p>
 				</div>
 			),
@@ -215,9 +214,9 @@ function FAQSection() {
 							starting framework
 						</span>
 						, not a requirement. You can begin with as few as 6–12
-						items and still see useful outfit combinations. Some
-						women start with even less, especially if they're
-						building their capsule from scratch.
+						items and still see useful outfits. Some women start
+						with even less, especially if they're building their
+						capsule from scratch.
 					</p>
 					<p>
 						Capsulify is designed to work with{' '}
@@ -849,7 +848,7 @@ const page = () => {
 		{
 			title: 'Maximise what you already own',
 			description:
-				"See new outfit combinations instantly. It's not about buying more, it's about using better.",
+				"See new outfits instantly. It's not about buying more, it's about using better.",
 			icon: (
 				<svg
 					className='w-5 h-5 text-white'
@@ -906,8 +905,8 @@ const page = () => {
 							{/* Body Text */}
 							<p className='text-sm md:text-base text-accent/70 leading-relaxed max-w-md'>
 								Stop staring at a full closet with nothing to
-								wear. Discover endless outfit combinations from
-								your existing wardrobe.
+								wear. Discover endless outfits from your
+								existing wardrobe.
 							</p>
 
 							{/* CTA Buttons */}
@@ -993,7 +992,7 @@ const page = () => {
 							{[
 								{
 									title: 'I have so many clothes but always wear the same outfits.',
-									body: 'Your closet is full of great pieces, but you default to the same combinations because they feel safe and familiar.',
+									body: 'Your closet is full of great pieces, but you default to the same outfits because they feel safe and familiar.',
 								},
 								{
 									title: 'This top is cute but I never know what to pair it with.',
@@ -1001,7 +1000,7 @@ const page = () => {
 								},
 								{
 									title: 'I end up buying more instead of wearing what I have.',
-									body: "When you're stuck, it's easier to shop than to experiment with combinations you've never tried.",
+									body: "When you're stuck, it's easier to shop than to experiment with outfits you've never tried.",
 								},
 								{
 									title: "I can't recreate those outfit ideas I saved.",
@@ -1009,11 +1008,11 @@ const page = () => {
 								},
 								{
 									title: "I don't know which of my pieces actually look good together.",
-									body: 'Not all combinations work, and trying everything on feels exhausting. You need a smarter way to see what works.',
+									body: 'Not all outfits work, and trying everything on feels exhausting. You need a smarter way to see what works.',
 								},
 								{
 									title: 'I want to maximize my existing wardrobe.',
-									body: 'You believe in capsule wardrobes but need help discovering all the outfit combinations your clothes can create.',
+									body: 'You believe in capsule wardrobes but need help discovering all the outfits your clothes can create.',
 								},
 							].map((item, index) => (
 								<div
@@ -1064,7 +1063,7 @@ const page = () => {
 									wear. I'd buy new pieces, save outfit
 									inspiration on Pinterest, but when it came
 									time to get dressed, I'd just reach for the
-									same few combinations.
+									same few outfits.
 								</p>
 								<p>So I tried to fix it the “right” way:</p>
 								<p>
@@ -1096,8 +1095,8 @@ const page = () => {
 									those looks with my actual clothes, they
 									never quite worked. I couldn't figure out
 									which of my pieces would create those
-									combinations, so I ended up buying more
-									clothes trying to match what I saw.
+									outfits, so I ended up buying more clothes
+									trying to match what I saw.
 								</p>
 								<p>
 									I tried every fashion app I could find but
@@ -1106,22 +1105,21 @@ const page = () => {
 									They assumed I wanted to be a fashionista. I
 									didn't. I just wanted to see{' '}
 									<span className='font-bold text-primary'>
-										more outfit combinations from my
-										existing wardrobe, not buy more.
+										more outfits from my existing wardrobe,
+										not buy more.
 									</span>
 								</p>
 								<p>
 									So I decided to build what I couldn't find
-									with two friends, Martin and Aditi.
-									Capsulify is the tool I wish I had years
-									ago.
+									with friend Aditi. Capsulify is the tool I
+									wish I had years ago.
 								</p>
 								<p>
-									It helps you see hundreds of outfit
-									combinations from your existing wardrobe. No
-									fluff. No pressure to shop. Just smart
-									outfit planning that shows you which pieces
-									work together for you.
+									It helps you see hundreds of outfits from
+									your existing wardrobe. No fluff. No
+									pressure to shop. Just smart outfit planning
+									that shows you which pieces work together
+									for you.
 								</p>
 								<p className='font-bold text-primary'>
 									This isn't about buying a whole new
@@ -1155,86 +1153,66 @@ const page = () => {
 							</p>
 						</div>
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-							<div className='relative pink-soft pink-soft rounded-none p-8'>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Goal
-								</span>
-								<h3 className='text-base font-bold  text-accent mb-3 mt-12 text-left'>
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className=' bg-[#994351] text-white text-[12px] md:text-[13px] px-4 py-2 rounded-full tracking-wider font-bold'>
 									I want to wear all the clothes I own, not
 									just my go-to pieces.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									You have great pieces collecting dust in
 									your closet because you don't know how to
 									style them.
 								</p>
 							</div>
-							<div className='relative pink-soft bg-white rounded-xl p-8 '>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Outcome
-								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className='bg-[#994351] text-white text-[12px] md:text-[13px] px-4 py-2 rounded-full tracking-wider font-bold'>
 									I want to see hundreds of outfit ideas from
 									my existing wardrobe.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									Stop defaulting to the same 5 outfits. Your
-									clothes can create dozens of combinations
-									you've never tried.
+									clothes can create dozens of outfits you've
+									never tried.
 								</p>
 							</div>
-							<div className='relative pink-soft bg-[#f3f0e9] rounded-xl p-8 '>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Outcome
-								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className='bg-[#994351] text-white text-[12px] md:text-[13px] px-4 py-2 rounded-full tracking-wider font-bold'>
 									I want to stop buying new clothes and wear
 									what I have.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									Rediscover your existing wardrobe and see
-									how 30 smart pieces can create 1000+ outfit
-									combinations.
+									how 30 smart pieces can create 1000+
+									outfits.
 								</p>
 							</div>
-							<div className='relative pink-soft bg-white rounded-xl p-8 '>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Goal
-								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className='bg-[#994351] text-white text-[12px] md:text-[13px] px-4 py-2 rounded-full tracking-wider font-bold'>
 									I want to look put-together without trying
-									every combination.
+									every outfit.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									You want to see which outfits work before
 									you even put them on — making your morning
 									routine effortless.
 								</p>
 							</div>
-							<div className='relative pink-soft bg-[#f3f0e9] rounded-xl p-8 '>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Feeling
-								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className='bg-[#994351] text-white text-[12px] md:text-[13px] px-4 py-2 rounded-full tracking-wider font-bold'>
 									I want to rediscover my closet and fall in
 									love with my clothes again.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									Stop letting great pieces sit unworn. Let
 									Capsulify show you fresh ways to style what
 									you already own.
 								</p>
 							</div>
-							<div className='relative pink-soft bg-white rounded-xl p-8 '>
-								<span className='absolute top-4 left-4 bg-[#994351] text-white text-[12px] md:text-[13px] px-3 py-1 rounded-full tracking-wider font-bold'>
-									Feeling
-								</span>
-								<h3 className='text-base font-bold text-accent mb-3 mt-12 text-left'>
-									I want dressing to be a joy,
-									<br />
-									not a chore.
+							<div className='pink-soft p-8 flex flex-col gap-6'>
+								<h3 className='bg-[#994351] text-white text-[12px] md:text-[13px] px-8 py-2 rounded-full tracking-wider font-bold'>
+									I want dressing to be a joy, not a chore.
 								</h3>
-								<p className='text-xs text-accent/70 leading-relaxed text-left'>
+								<p className='text-sm text-accent/70 leading-relaxed'>
 									You want to feel good every morning, knowing
 									exactly what to wear — without overthinking
 									it.
@@ -1320,7 +1298,7 @@ const page = () => {
 									</svg>
 								</div>
 								<h3 className='text-base font-bold text-accent mb-3'>
-									Get Outfit Combinations
+									Get Outfits
 								</h3>
 								<p className='text-xs text-accent/70 leading-relaxed'>
 									Receive personalized outfit suggestions that
@@ -1603,7 +1581,7 @@ const page = () => {
 				</section>
 
 				{/* FAQ Section */}
-				<section className='w-full py-10 px-6 md:px-12'>
+				<section id='faq' className='w-full py-10 px-6 md:px-12'>
 					<div className='max-w-6xl mx-auto'>
 						<div className='p-8 md:p-10'>
 							<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces text-accent-2 text-center mb-10'>
@@ -1616,7 +1594,10 @@ const page = () => {
 				</section>
 
 				{/* Features Grid Section */}
-				<section className='section-wrapper px-6 md:px-10'>
+				<section
+					id='features'
+					className='section-wrapper px-6 md:px-10'
+				>
 					<div className='max-w-6xl mx-auto space-y-12'>
 						<div className='text-center space-y-4'>
 							<span className='badge-soft'>
@@ -1676,39 +1657,30 @@ const page = () => {
 						<h2 className='text-3xl md:text-4xl font-extrabold font-fraunces'>
 							Ready to transform your wardrobe?
 						</h2>
-						<div className='space-y-3 max-w-2xl mx-auto'>
-							<p className='text-xl font-semibold'>
-								Try it risk-free. Upload your first 12 pieces
-								for free and see the combinations waiting in
-								your closet.
-							</p>
-						</div>
 						<div className='flex flex-wrap justify-center gap-4 text-sm font-medium text-neutral-light/85'>
-							{[
-								'Free to start',
-								'No credit card required',
-								'Cancel anytime',
-							].map((pill) => (
-								<span
-									key={pill}
-									className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm'
-								>
-									<svg
-										className='w-4 h-4 text-accent'
-										fill='none'
-										stroke='currentColor'
-										viewBox='0 0 24 24'
+							{['Free to start', 'No credit card required'].map(
+								(pill) => (
+									<span
+										key={pill}
+										className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm'
 									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M5 13l4 4L19 7'
-										/>
-									</svg>
-									{pill}
-								</span>
-							))}
+										<svg
+											className='w-4 h-4 text-accent'
+											fill='none'
+											stroke='currentColor'
+											viewBox='0 0 24 24'
+										>
+											<path
+												strokeLinecap='round'
+												strokeLinejoin='round'
+												strokeWidth={2}
+												d='M5 13l4 4L19 7'
+											/>
+										</svg>
+										{pill}
+									</span>
+								)
+							)}
 						</div>
 						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 							<a
@@ -1802,14 +1774,6 @@ const page = () => {
 										className='hover:text-accent transition-colors'
 									>
 										How It Works
-									</a>
-								</li>
-								<li>
-									<a
-										href='#pricing'
-										className='hover:text-accent transition-colors'
-									>
-										Pricing
 									</a>
 								</li>
 								<li>
