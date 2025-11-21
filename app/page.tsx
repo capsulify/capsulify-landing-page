@@ -1,7 +1,11 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
+
+const EXIT_INTENT_STORAGE_KEY = 'capsulify_exit_modal_seen'
+const EXIT_INTENT_MIN_TIME_MS = 8000
+const EXIT_INTENT_TOP_THRESHOLD = 12
 
 // Types for FAQ
 interface FAQ {
@@ -345,8 +349,15 @@ function CountdownTimer() {
 	)
 }
 
-// eBook Section logic
-function EbookSection() {
+interface EbookSignupFormProps {
+	variant?: 'default' | 'compact'
+	onSuccessMessage?: string
+}
+
+function EbookSignupForm({
+	variant = 'default',
+	onSuccessMessage,
+}: EbookSignupFormProps) {
 	const [email, setEmail] = useState('')
 	const [name, setName] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -381,6 +392,70 @@ function EbookSection() {
 		}
 	}
 
+	const isCompact = variant === 'compact'
+	const containerClass =
+		variant === 'default'
+			? 'w-full max-w-md mx-auto flex flex-col gap-4'
+			: 'w-full flex flex-col gap-3'
+	const inputClass = isCompact
+		? 'flex-1 px-4 py-3 rounded-lg border border-neutral-dark/10 focus:outline-none text-accent bg-white text-base shadow-sm'
+		: 'flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 focus:outline-none text-accent bg-soft-accent/30 text-base'
+	const buttonClass = isCompact
+		? 'w-full bg-accent text-neutral-dark font-bold px-6 py-3 rounded-lg text-base capitalize font-fraunces italic transition hover:opacity-90 disabled:opacity-60'
+		: 'btn-primary w-full uppercase tracking-wide text-sm font-fraunces italic cursor-pointer disabled:opacity-60'
+
+	return (
+		<div className={containerClass} role='form' aria-live='polite'>
+			{!mounted ? (
+				<>
+					<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/10 bg-soft-accent/40 h-[52px] animate-pulse'></div>
+					<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/10 bg-soft-accent/40 h-[52px] animate-pulse'></div>
+					<div className='w-full bg-accent/80 text-neutral-dark font-bold px-6 py-3 rounded-lg text-base capitalize font-fraunces italic text-center animate-pulse'>
+						Download eBook Now
+					</div>
+				</>
+			) : (
+				<form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+					<input
+						type='text'
+						required
+						placeholder='Enter your name'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						className={inputClass}
+					/>
+					<input
+						type='email'
+						required
+						placeholder='Enter your e-mail address'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						className={inputClass}
+					/>
+					<button
+						type='submit'
+						disabled={loading}
+						className={buttonClass}
+					>
+						{loading ? 'Processing...' : 'Download eBook Now'}
+					</button>
+				</form>
+			)}
+			{error && (
+				<p className='text-red-600 text-center text-sm'>{error}</p>
+			)}
+			{success && (
+				<p className='text-green-600 text-center text-sm'>
+					{onSuccessMessage ||
+						'Check your email to download the ebook!'}
+				</p>
+			)}
+		</div>
+	)
+}
+
+// eBook Section logic
+function EbookSection() {
 	return (
 		<div className='w-full max-w-6xl mx-auto px-4 py-10'>
 			<h2 className='text-center text-xl md:text-3xl font-extrabold font-fraunces mb-8 text-accent'>
@@ -395,60 +470,254 @@ function EbookSection() {
 					className='w-80 h-auto rounded-lg shadow-xl bg-white object-contain max-w-full'
 				/>
 			</div>
+			<EbookSignupForm />
+		</div>
+	)
+}
 
-			{!mounted ? (
-				<div className='w-full max-w-md mx-auto flex flex-col gap-4'>
-					<div className='w-full flex flex-col gap-3'>
-						<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 bg-soft-accent/40 h-[52px]'></div>
-						<div className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 bg-soft-accent/40 h-[52px]'></div>
+interface ExitIntentModalProps {
+	open: boolean
+	onClose: () => void
+}
+
+function ExitIntentModal({ open, onClose }: ExitIntentModalProps) {
+	const dialogRef = useRef<HTMLDivElement | null>(null)
+
+	useEffect(() => {
+		if (!open) return
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				onClose()
+			}
+			if (event.key === 'Tab' && dialogRef.current) {
+				const focusable =
+					dialogRef.current.querySelectorAll<HTMLElement>(
+						'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+					)
+				const first = focusable[0]
+				const last = focusable[focusable.length - 1]
+				if (!first || !last) {
+					return
+				}
+				if (event.shiftKey) {
+					if (document.activeElement === first) {
+						event.preventDefault()
+						last.focus()
+					}
+				} else {
+					if (document.activeElement === last) {
+						event.preventDefault()
+						first.focus()
+					}
+				}
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+		return () => document.removeEventListener('keydown', handleKeyDown)
+	}, [open, onClose])
+
+	if (!open) {
+		return null
+	}
+
+	const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (event.target === event.currentTarget) {
+			onClose()
+		}
+	}
+
+	return (
+		<div
+			className='fixed inset-0 z-50 flex items-center justify-center bg-neutral-dark/70 backdrop-blur-sm px-4'
+			onClick={handleOverlayClick}
+			aria-hidden={!open}
+		>
+			<div
+				ref={dialogRef}
+				role='dialog'
+				aria-modal='true'
+				className='w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:p-10 relative animate-fade-in'
+			>
+				<button
+					onClick={onClose}
+					className='absolute top-4 right-4 text-neutral-dark/60 hover:text-neutral-dark focus:outline-none'
+					aria-label='Close exit intent modal'
+				>
+					<svg
+						className='w-6 h-6'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							strokeWidth={1.5}
+							d='M6 18L18 6M6 6l12 12'
+						/>
+					</svg>
+				</button>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
+					<div className='space-y-4'>
+						<span className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent'>
+							Wait! Unlock the guide
+						</span>
+						<h3 className='text-2xl md:text-3xl font-fraunces font-extrabold text-accent'>
+							Before you go, grab the 30-piece Capsule Playbook
+						</h3>
+						<p className='text-sm md:text-sm text-accent/70 leading-relaxed'>
+							Discover how to pull 1000+ outfits from the wardrobe
+							you already own. Pop in your details and we’ll send
+							the eBook straight to your inbox.
+						</p>
 					</div>
-					<div className='w-full bg-accent text-neutral-dark font-bold px-6 py-3 rounded-lg text-base capitalize font-fraunces italic text-center'>
-						Download eBook Now
+					<div className='bg-soft-accent/50 rounded-2xl p-5 shadow-inner'>
+						<EbookSignupForm
+							variant='compact'
+							onSuccessMessage='Woo! Check your inbox for the download link.'
+						/>
 					</div>
 				</div>
-			) : (
-				<form
-					onSubmit={handleSubmit}
-					className='w-full max-w-md mx-auto flex flex-col gap-4'
-				>
-					<div className='w-full flex flex-col gap-3'>
-						<input
-							type='text'
-							required
-							placeholder='Enter your name'
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 focus:outline-none text-accent bg-soft-accent/30 text-base'
-						/>
-						<input
-							type='email'
-							required
-							placeholder='Enter your e-mail address'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							className='flex-1 px-4 py-3 rounded-lg border border-neutral-dark/20 focus:outline-none text-accent bg-soft-accent/30 text-base'
-						/>
-					</div>
-					<button
-						type='submit'
-						disabled={loading}
-						className='btn-primary w-full uppercase tracking-wide text-sm font-fraunces italic cursor-pointer disabled:opacity-60'
-					>
-						{loading ? 'Processing...' : 'Download eBook Now'}
-					</button>
-				</form>
-			)}
-			{error && <p className='text-red-600 text-center mt-4'>{error}</p>}
-			{success && (
-				<p className='text-green-600 text-center mt-4'>
-					Check your email to download the ebook!
-				</p>
-			)}
+			</div>
 		</div>
 	)
 }
 
 const page = () => {
+	const [showExitModal, setShowExitModal] = useState(false)
+	const exitIntentEligibleRef = useRef(false)
+	const exitIntentTriggeredRef = useRef(false)
+	const pendingVisibilityTriggerRef = useRef(false)
+
+	useEffect(() => {
+		if (typeof window === 'undefined') return
+		const seen =
+			typeof sessionStorage !== 'undefined'
+				? sessionStorage.getItem(EXIT_INTENT_STORAGE_KEY)
+				: null
+		if (seen === 'true') return
+
+		const enableTimer = window.setTimeout(() => {
+			exitIntentEligibleRef.current = true
+		}, EXIT_INTENT_MIN_TIME_MS)
+
+		const triggerModal = () => {
+			exitIntentTriggeredRef.current = true
+			setShowExitModal(true)
+			if (typeof sessionStorage !== 'undefined') {
+				sessionStorage.setItem(EXIT_INTENT_STORAGE_KEY, 'true')
+			}
+		}
+
+		const cleanups: Array<() => void> = []
+		const isTouchDevice =
+			window.matchMedia?.('(pointer: coarse)').matches ||
+			'ontouchstart' in window
+
+		if (isTouchDevice) {
+			const handlePopState = () => {
+				if (
+					!exitIntentEligibleRef.current ||
+					exitIntentTriggeredRef.current
+				) {
+					return
+				}
+				history.pushState(null, '', window.location.href)
+				triggerModal()
+			}
+
+			const handleVisibilityChange = () => {
+				if (exitIntentTriggeredRef.current) {
+					return
+				}
+				if (document.visibilityState === 'hidden') {
+					pendingVisibilityTriggerRef.current = true
+				} else if (
+					document.visibilityState === 'visible' &&
+					pendingVisibilityTriggerRef.current &&
+					exitIntentEligibleRef.current
+				) {
+					pendingVisibilityTriggerRef.current = false
+					triggerModal()
+				}
+			}
+
+			window.addEventListener('popstate', handlePopState)
+			document.addEventListener(
+				'visibilitychange',
+				handleVisibilityChange
+			)
+
+			cleanups.push(() =>
+				window.removeEventListener('popstate', handlePopState)
+			)
+			cleanups.push(() =>
+				document.removeEventListener(
+					'visibilitychange',
+					handleVisibilityChange
+				)
+			)
+		} else {
+			const handleMouseMove = (event: MouseEvent) => {
+				if (
+					!exitIntentEligibleRef.current ||
+					exitIntentTriggeredRef.current
+				) {
+					return
+				}
+				if (event.clientY <= EXIT_INTENT_TOP_THRESHOLD + 5) {
+					triggerModal()
+				}
+			}
+
+			const handleMouseLeave = (event: MouseEvent) => {
+				if (
+					!exitIntentEligibleRef.current ||
+					exitIntentTriggeredRef.current
+				) {
+					return
+				}
+				if (typeof event.clientY === 'number' && event.clientY <= 0) {
+					triggerModal()
+				} else if (event.relatedTarget === null) {
+					triggerModal()
+				}
+			}
+
+			window.addEventListener('mousemove', handleMouseMove, {
+				passive: true,
+			})
+			document.addEventListener('mouseleave', handleMouseLeave)
+
+			cleanups.push(() =>
+				window.removeEventListener('mousemove', handleMouseMove)
+			)
+			cleanups.push(() =>
+				document.removeEventListener('mouseleave', handleMouseLeave)
+			)
+		}
+
+		return () => {
+			window.clearTimeout(enableTimer)
+			cleanups.forEach((cleanup) => cleanup())
+		}
+	}, [])
+
+	useEffect(() => {
+		if (typeof document === 'undefined') return
+		if (showExitModal) {
+			const originalOverflow = document.body.style.overflow
+			document.body.style.overflow = 'hidden'
+			return () => {
+				document.body.style.overflow = originalOverflow
+			}
+		}
+	}, [showExitModal])
+
+	const closeExitModal = () => setShowExitModal(false)
+
 	const featureHighlights = [
 		{
 			title: 'Be a co-creator',
@@ -580,8 +849,8 @@ const page = () => {
 			{/* Main Content */}
 			<main>
 				{/* Hero Section - Split Screen */}
-				<section className='w-full bg-[#f8f4f0] py-16 md:py-20 px-6 md:px-12 text-center md:text-left relative'>
-					<div className='max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16'>
+				<section className='w-full bg-[#f8f4f0] py-16 md:py-12 px-6 md:px-12 text-center md:text-left relative'>
+					<div className='max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16 animate-slide-up'>
 						{/* Left: Text Content */}
 						<div className='flex-1 space-y-6'>
 							{/* Logo and Brand Name */}
@@ -677,8 +946,8 @@ const page = () => {
 								<Image
 									src='/assets/landing-page/hero-section-img.jpg'
 									alt='Capsulify App Preview'
-									width={700}
-									height={800}
+									width={800}
+									height={900}
 									className='w-full h-auto object-cover'
 								/>
 							</div>
@@ -1574,6 +1843,7 @@ const page = () => {
 					</div>
 				</div>
 			</footer>
+			<ExitIntentModal open={showExitModal} onClose={closeExitModal} />
 		</div>
 	)
 }
