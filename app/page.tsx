@@ -590,6 +590,7 @@ const page = () => {
 	const exitIntentEligibleRef = useRef(false)
 	const exitIntentTriggeredRef = useRef(false)
 	const pendingVisibilityTriggerRef = useRef(false)
+	const mobileHistoryGuardedRef = useRef(false)
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return
@@ -617,15 +618,25 @@ const page = () => {
 			'ontouchstart' in window
 
 		if (isTouchDevice) {
-			const handlePopState = () => {
+			if (
+				!mobileHistoryGuardedRef.current &&
+				typeof history !== 'undefined'
+			) {
+				history.pushState({ exitIntentGuard: true }, '')
+				mobileHistoryGuardedRef.current = true
+			}
+
+			const handlePopState = (event: PopStateEvent) => {
 				if (
 					!exitIntentEligibleRef.current ||
 					exitIntentTriggeredRef.current
 				) {
 					return
 				}
-				history.pushState(null, '', window.location.href)
-				triggerModal()
+				if (event.state && event.state.exitIntentGuard) {
+					history.pushState(event.state, '', window.location.href)
+					triggerModal()
+				}
 			}
 
 			const handleVisibilityChange = () => {
